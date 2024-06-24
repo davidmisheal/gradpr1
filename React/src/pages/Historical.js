@@ -3,7 +3,6 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Category_part from "../components/Category_part";
 import CardPlace from "../components/CardPlace";
-import data from "../data/places.json"; // Import your data file containing the places
 import { Scroll } from "../func/Scroll";
 import ScreenSize from "../func/ScreenSize";
 import FloatNav from '../components/Float-nav'
@@ -18,7 +17,7 @@ export default function Historical() {
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/place');
+                const response = await axios.get('http://localhost:3000/api/v1/places');
                 const historicalPlaces = response.data.filter(place => place.tourism == 'historical')
                 setFilteredData(historicalPlaces); // Initialize filteredData with all places
             } catch (error) {

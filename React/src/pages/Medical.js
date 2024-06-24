@@ -9,7 +9,6 @@ import FloatNav from '../components/Float-nav'
 import axios from "axios";
 
 // Import the data
-import data from "../data/places.json"; // Assuming the data is stored in a JSON file
 
 export default function Medical() {
     const isMobile = ScreenSize()
@@ -19,7 +18,7 @@ export default function Medical() {
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/place');
+                const response = await axios.get('http://localhost:3000/api/v1/places');
                 const medicalPlaces = response.data.filter(place => place.tourism == 'medical')
                 setFilteredData(medicalPlaces); // Initialize filteredData with all places
             } catch (error) {

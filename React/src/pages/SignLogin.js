@@ -150,14 +150,14 @@ export default function SignLogin() {
         }));
       }
     } else if (userState === "tourguide") {
-      const { name, email, password,location, price, role } = formData;
+      const { name, email, password, location, price, role } = formData;
       let isValid = true;
       const newErrors = {
         name: "",
         email: "",
         password: "",
         price: "",
-        location:""
+        location: ""
       };
 
       if (!/^\S+@\S+\.\S+$/.test(email)) {
@@ -181,7 +181,7 @@ export default function SignLogin() {
       try {
         const response = await axios.post(
           "http://localhost:3000/api/v1/tours/signup",
-          { name, email, password,location, price, role }
+          { name, email, password, location, price, role }
         );
         setTour(response.data);
         console.log("Sign-up successful!", response.data);
@@ -205,7 +205,7 @@ export default function SignLogin() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (userState == "user") {
+    if (userState === "user") {
       const { email, password } = formData;
       const newErrors = { email: "", password: "" };
 
@@ -235,7 +235,7 @@ export default function SignLogin() {
           formError: error.response.data.message || "An error occurred",
         }));
       }
-    } else if (userState == "tourguide") {
+    } else if (userState === "tourguide") {
       const { email, password } = formData;
       const newErrors = { email: "", password: "" };
 
@@ -274,13 +274,13 @@ export default function SignLogin() {
       <div className="signin-main">
         <span className="signin-options">
           <i
-            className="fa-solid fa-user-tie fa-xl"
+            className={`fa-solid fa-user-tie fa-xl icon ${userState === "tourguide" ? "active" : ""}`}
             onClick={() => {
               handleOptionsSignIn("tourguide");
             }}
           ></i>
           <i
-            className="fa-solid fa-user fa-xl"
+            className={`fa-solid fa-user fa-xl icon ${userState === "user" ? "active" : ""}`}
             onClick={() => {
               handleOptionsSignIn("user");
             }}
@@ -364,10 +364,11 @@ export default function SignLogin() {
         </div>
         {signUpState ? (
           <>
-            <div className="signup-popup">
+            <div className="signup-popup show">
               <span className="signup-exit">
                 <i
-                  className="fa-solid fa-x"
+                  className={`fa-solid fa-x`}
+
                   onClick={() => {
                     setSignUpState(false);
                   }}
@@ -375,13 +376,13 @@ export default function SignLogin() {
               </span>
               <span className="signup-options">
                 <i
-                  className="fa-solid fa-user-tie fa-xl"
+                  className={`fa-solid fa-user-tie fa-xl icon ${userState === "tourguide" ? "active" : ""}`}
                   onClick={() => {
                     handleOptionsSignUp("tourguide");
                   }}
                 ></i>
                 <i
-                  className="fa-solid fa-user fa-xl"
+                  className={`fa-solid fa-user fa-xl icon ${userState === "user" ? "active" : ""}`}
                   onClick={() => {
                     handleOptionsSignUp("user");
                   }}

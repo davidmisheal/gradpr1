@@ -21,7 +21,7 @@ export default function All() {
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/place');
+                const response = await axios.get('http://localhost:3000/api/v1/places');
                 setPlaces(response.data);
                 setFilteredData(response.data); // Initialize filteredData with all places
                 console.log('Fetched places:', response.data);
